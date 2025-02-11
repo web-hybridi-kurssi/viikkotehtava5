@@ -18,6 +18,7 @@ const icons = {
 }
   export default function App() {
     const [icon, setIcon] = useState(icons.location_not_known)
+    const [location_found, setLocation_found] = useState(false)
 
     useEffect(() => {
       const position = async() => {
@@ -47,6 +48,7 @@ const icons = {
       }
       const position = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.High})
       setLocation({...location, "latitude": position.coords.latitude, "longitude": position.coords.longitude})
+      setLocation_found(true)
     }catch(error){
       console.log(error)
     }
@@ -61,7 +63,8 @@ const icons = {
     getUserPosition={getUserPosition}
     />
     <SafeAreaView style={styles.container}>
-      <Map location={location}/>
+      <Map location={location}
+            location_found={location_found}/>
     </SafeAreaView>
     </PaperProvider>
   );

@@ -27,9 +27,9 @@ export default function Map(props) {
         region={props.location}
         onLongPress={showMarker}
         >
-        <Marker title="My location"
+        {props.location_found && <Marker title="My location"
                     coordinate={props.location}
-                    pinColor="blue"></Marker>
+                    pinColor="blue"></Marker>}
         {markers.map((coords, index) => (
                 <Marker key={index}
                 coordinate={{latitude: coords.latitude, longitude: coords.longitude}}
